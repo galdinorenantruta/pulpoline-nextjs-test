@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="bg-gray-100">
+        {" "}
+        {/* Exemplo de aplicação de classe Tailwind */}
+        <Navbar />
+        <div className="flex">
+          <main className="flex-1 p-4">{children}</main>
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }
