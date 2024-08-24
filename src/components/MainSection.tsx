@@ -1,15 +1,17 @@
+import Image from "next/image";
 import React from "react";
 
 const MainSection = () => {
   return (
     <>
-      <div className="p-8 bg-gray-100 flex flex-col">
-        {/* Título Principal */}
-        <h1 className="text-2xl font-bold mb-4">Gestion de Saldo</h1>
+      <div className="p-4 sm:p-8flex flex-col relative mr-6 ml-4 ">
+        <h1 className="text-xl sm:text-2xl font-bold mb-4">Gestion de Saldo</h1>
 
-        {/* Opções de Saldo e Prêmios */}
-        <div className="flex space-x-4 mb-8">
-          <button className="border-b-2 border-#006089 font-semibold">
+        <div className="flex flex-col sm:flex-row sm:space-x-4 mb-8">
+          <button
+            style={{ borderBottom: "1px solid #006089" }}
+            className="font-semibold mb-2 sm:mb-0"
+          >
             Recargar Saldo
           </button>
           <button className="text-gray-500 cursor-not-allowed">
@@ -17,139 +19,109 @@ const MainSection = () => {
           </button>
         </div>
 
-        {/* Saldo Principal */}
         <div className="text-center mb-8">
-          <h2 className="text-5xl font-bold">10,00 €</h2>
-          <p className="text-xl">Tu Saldo</p>
+          <h2 className="text-3xl sm:text-5xl font-bold">10,00 €</h2>
+          <p className="text-lg sm:text-xl">Tu Saldo</p>
         </div>
 
-        {/* Seleção de Importe */}
-        <div className="w-full max-w-xs text-left mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Selecciona e Importe a Anadir
+        <div className="w-full max-w-md sm:max-w-xl text-left mb-4">
+          <label className="block text-sm font-bold mb-2">
+            Selecciona e Importe a Anadir:
           </label>
-          <select className="block w-full p-2 border border-gray-300 rounded-md">
-            <option value="">Escolha uma opção</option>
-            <option value="10">10 €</option>
-            <option value="20">20 €</option>
-            <option value="30">30 €</option>
-            <option value="40">40 €</option>
-            <option value="50">50 €</option>
-          </select>
+          <input
+            type="text"
+            placeholder="Importe (€)"
+            className="block w-full p-2 border border-gray-300 rounded-md"
+          />
         </div>
+        <p className="text-sm">Importe Mínimo 1€</p>
+      </div>
+      {/* Buttons */}
+      <div className="flex flex-wrap gap-4 mb-8 ml-8">
+        {["5 €", "10 €", "20 €", "50 €", "100 €"].map((value, index) => (
+          <button
+            key={index}
+            className=" w-32 sm:w-36 text-black py-2 px-4 rounded-lg bg-blue-200 hover:bg-blue-600  hover:scale-110 "
+          >
+            {value}
+          </button>
+        ))}
+      </div>
+      <div className="ml-8">
+        <h2 className="text-lg sm:text-xl font-semibold mb-4">Método Pago</h2>
 
-        {/* Botões de Seleção */}
-        <div className="flex space-x-4 mb-8">
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-            10 €
-          </button>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-            20 €
-          </button>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-            30 €
-          </button>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-            40 €
-          </button>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-            50 €
-          </button>
+        <div
+          style={{ border: "1px solid #00A9E0" }}
+          className=" sm:p-8 bg-white flex flex-col rounded-md w-9/12"
+        >
+          <div className="flex items-center mb-4">
+            <input
+              type="radio"
+              checked={true}
+              className="form-checkbox h-4 w-4 text-black"
+            />
+            <p>Tarjeta Bancária</p>
+            <Image width={15} height={15} alt="logo" src="/16px_icon.svg" />
+            <p className="ml-auto text-sm text-gray-400">Instántaneo</p>
+          </div>
+          <div className="flex items-center mb-4 ml-2">
+            <input
+              type="radio"
+              checked={true}
+              className="form-checkbox h-4 w-4 text-black"
+            />
+            <p>Tarjeta Terminada en 0909</p>
+          </div>
+          <div className="flex items-center mb-4 ml-2">
+            <input type="radio" className="form-checkbox h-4 w-4 text-black" />
+            <p>Utilizar Otra Tarjeta</p>
+          </div>
+
+          <div className="relative mb-4">
+            <label
+              style={{ fontSize: "12px" }}
+              htmlFor="select"
+              className="block mb-2 absolute font-semibold top-0 left-2 transform -translate-y-1/2 px-1 bg-white"
+            >
+              Elige TPV
+            </label>
+            <select
+              id="select"
+              className="block w-full max-w-xlg p-2 border border-black rounded-md pt-6"
+            >
+              <option value="sabadel">Sabadel</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      {/* Seção Método Pago */}
-      <div className="p-8 bg-gray-50 flex flex-col">
-        <h2 className="text-xl font-semibold mb-4">Método Pago</h2>
-
-        <div className="flex items-center mb-4">
-          <input
-            type="radio"
-            id="tarjeta-bancaria"
-            checked
-            className="form-checkbox h-4 w-4 text-blue-600"
-          />
-          <label htmlFor="tarjeta-bancaria" className="ml-2">
-            Tarjeta Bancaria
-          </label>
+      <div className="p-4 sm:p-8 bg-gray-100 flex flex-col">
+        <div className="w-3/4 bg-white flex items-center mb-4 border border-gray-400 h-10 rounded-md p-3">
+          <input type="radio" className="form-checkbox h-4 w-4 text-black " />
+          <label className="ml-2 font-bold">Bizu</label>
+          <Image width={15} height={15} alt="logo" src="/16px_icon.svg" />
+          <p className="ml-auto text-sm text-gray-400">Importe Mínimo 10€</p>
         </div>
-
-        <div className="flex items-center mb-4">
-          <input
-            type="radio"
-            id="tarjeta-terminada"
-            checked
-            className="form-checkbox h-4 w-4 text-blue-600"
-          />
-          <label htmlFor="tarjeta-terminada" className="ml-2">
-            Tarjeta Terminada en 0909
-          </label>
-        </div>
-
-        <div className="flex items-center mb-4">
-          <input
-            type="radio"
-            id="otra-tarjeta"
-            className="form-checkbox h-4 w-4 text-blue-600"
-          />
-          <label htmlFor="otra-tarjeta" className="ml-2">
-            Utilizar Outra Tarjeta
-          </label>
-        </div>
-
-        <select className="block w-full max-w-xs p-2 border border-gray-300 rounded-md mb-4">
-          <option value="sabadel">Sabadel</option>
-        </select>
-      </div>
-
-      {/* Seção Métodos de Pagamento Adicionais */}
-      <div className="p-8 bg-gray-100 flex flex-col">
-        <div className="flex items-center mb-4">
-          <input
-            type="radio"
-            id="bizum"
-            className="form-checkbox h-4 w-4 text-blue-600"
-          />
-          <label htmlFor="bizum" className="ml-2">
-            Bizum
-          </label>
-        </div>
-
-        <div className="flex items-center">
-          <input
-            type="radio"
-            id="transferencia"
-            className="form-checkbox h-4 w-4 text-blue-600"
-          />
-          <label htmlFor="transferencia" className="ml-2">
-            Transferencia
-          </label>
+        <div className="w-3/4 bg-white flex items-center mb-4 border border-gray-400 h-10 rounded-md p-3">
+          <input type="radio" className="form-checkbox h-4 w-4 text-black " />
+          <label className="ml-2 font-bold">Transferencia</label>
+          <Image width={15} height={15} alt="logo" src="/16px_icon.svg" />
+          <p className="ml-auto text-sm text-gray-400">No Instántaneo</p>
         </div>
       </div>
 
       {/* Seção Final com Ícone, Texto e Botão */}
-      <div className="p-8 bg-gray-50 flex items-center justify-between">
-        <div className="flex items-center">
-          <div className="h-6 w-6 bg-blue-500 text-white flex items-center justify-center rounded-full mr-4">
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 8v4l2 2m-6-6h6M6 12v6m12-6v6"
-              />
-            </svg>
-          </div>
-          <p className="text-lg">Texto de Descrição</p>
+      <div className="p-4 sm:p-8 bg-gray-50 flex flex-col sm:flex-row items-center justify-between">
+        <div className="flex items-center mb-4 sm:mb-0">
+          <Image width={25} height={25} alt="logo" src="/24pxshield.svg" />
+          <p className="text-sm ml-2">
+            Todos los pagos en Lotopía son 100% seguros. Web certificada por{" "}
+            <br />
+            Confianza Online
+          </p>
         </div>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-          Ação
+        <button className="bg-blue-400 text-white py-2 px-4 rounded-lg hover:scale-110 hover:bg-blue-600">
+          Recargar Cuenta
         </button>
       </div>
     </>
