@@ -1,16 +1,46 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import FinalSection from "./FinalSection";
 
 const MainSection = () => {
+  const [saldoAtual, setSaldoAtual] = useState<number>(10);
+  const [valorSelecionado, setValorSelecionado] = useState<string | null>(null);
+  const [showNewComponent, setShowNewComponent] = useState(false);
+
+  const handleValueClick = (value: string) => {
+    setValorSelecionado(value); // Atualiza o valor selecionado
+    console.log(valorSelecionado);
+  };
+
+  // Função para recarregar o saldo
+  const handleRecharge = () => {
+    if (valorSelecionado !== null) {
+      setSaldoAtual(saldoAtual + parseFloat(valorSelecionado));
+      console.log(saldoAtual);
+      setValorSelecionado(null);
+      setShowNewComponent(true);
+    }
+  };
+  if (showNewComponent) {
+    return (
+      <FinalSection
+        saldoAtual={saldoAtual}
+        setShowNewComponent={setShowNewComponent}
+      />
+    ); // Retorna o novo componente passando o saldoAtual como prop
+  }
   return (
     <>
-      <div className="p-4 sm:p-8flex flex-col relative mr-6 ml-4 ">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4">Gestion de Saldo</h1>
+      <div className="p-0 sm:p-8 flex flex-col relative mr-6 ml-4 sm:mr-0 sm:ml-0 mt-[-20px] sm:mt-0 ">
+        <h1 className="hidden  sm:block text-xl  font-bold mb-4">
+          Gestion de Saldo
+        </h1>
 
-        <div className="flex flex-col sm:flex-row sm:space-x-4 mb-8">
+        <div className="flex flex-row space-x-4 mb-8">
           <button
             style={{ borderBottom: "1px solid #006089" }}
-            className="font-semibold mb-2 sm:mb-0"
+            className="font-semibold mb-2 "
           >
             Recargar Saldo
           </button>
@@ -20,7 +50,7 @@ const MainSection = () => {
         </div>
 
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-5xl font-bold">10,00 €</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold">{saldoAtual},00 €</h2>
           <p className="text-lg sm:text-xl">Tu Saldo</p>
         </div>
 
@@ -40,19 +70,26 @@ const MainSection = () => {
       <div className="flex flex-wrap gap-4 mb-8 ml-8">
         {["5 €", "10 €", "20 €", "50 €", "100 €"].map((value, index) => (
           <button
+            onClick={() => handleValueClick(value)}
             key={index}
-            className=" w-32 sm:w-36 text-black py-2 px-4 rounded-lg bg-blue-200 hover:bg-blue-600  hover:scale-110 "
+            className={`w-16 sm:w-32 text-black py-2 px-4 rounded-lg 
+              ${
+                valorSelecionado === value
+                  ? "bg-blue-700 scale-110 text-white"
+                  : "bg-blue-200 hover:bg-blue-700 hover:scale-110"
+              }`}
           >
             {value}
           </button>
         ))}
       </div>
-      <div className="ml-8">
+
+      <div className="ml-0 sm:ml-8">
         <h2 className="text-lg sm:text-xl font-semibold mb-4">Método Pago</h2>
 
         <div
           style={{ border: "1px solid #00A9E0" }}
-          className=" sm:p-8 bg-white flex flex-col rounded-md w-9/12"
+          className=" p-0 sm:p-8 bg-white flex flex-col rounded-md sm:w-9/12"
         >
           <div className="flex items-center mb-4">
             <input
@@ -77,7 +114,7 @@ const MainSection = () => {
             <p>Utilizar Otra Tarjeta</p>
           </div>
 
-          <div className="relative mb-4">
+          <div className="hidden sm:block relative mb-4">
             <label
               style={{ fontSize: "12px" }}
               htmlFor="select"
@@ -95,24 +132,50 @@ const MainSection = () => {
         </div>
       </div>
 
-      <div className="p-4 sm:p-8 bg-gray-100 flex flex-col">
+      <div className="p-0 pt-4 sm:p-8 bg-gray-100 flex flex-col">
         <div className="w-3/4 bg-white flex items-center mb-4 border border-gray-400 h-10 rounded-md p-3">
           <input type="radio" className="form-checkbox h-4 w-4 text-black " />
           <label className="ml-2 font-bold">Bizu</label>
-          <Image width={15} height={15} alt="logo" src="/16px_icon.svg" />
-          <p className="ml-auto text-sm text-gray-400">Importe Mínimo 10€</p>
+          <Image
+            className="hidden lg:flex"
+            width={15}
+            height={15}
+            alt="logo"
+            src="/16px_icon.svg"
+          />
+          <p className="hidden lg:flex ml-auto text-sm text-gray-400">
+            Importe Mínimo 10€
+          </p>
         </div>
         <div className="w-3/4 bg-white flex items-center mb-4 border border-gray-400 h-10 rounded-md p-3">
           <input type="radio" className="form-checkbox h-4 w-4 text-black " />
           <label className="ml-2 font-bold">Transferencia</label>
-          <Image width={15} height={15} alt="logo" src="/16px_icon.svg" />
-          <p className="ml-auto text-sm text-gray-400">No Instántaneo</p>
+          <Image
+            className="hidden lg:flex"
+            width={15}
+            height={15}
+            alt="logo"
+            src="/16px_icon.svg"
+          />
+          <p className="hidden lg:flex ml-auto text-sm text-gray-400">
+            No Instántaneo
+          </p>
         </div>
       </div>
 
       {/* Seção Final com Ícone, Texto e Botão */}
-      <div className="p-4 sm:p-8 bg-gray-50 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center mb-4 sm:mb-0">
+      <div className="p-0 pt-4 sm:p-8 bg-gray-50 flex flex-col sm:flex-row items-center justify-between">
+        <button
+          onClick={handleRecharge}
+          className={`w-full sm:w-48 py-2 px-4 rounded-lg mb-4 sm:mb-0 order-1 sm:order-2 ${
+            valorSelecionado
+              ? "bg-blue-600 text-white"
+              : "bg-blue-400  text-gray-300"
+          } hover:text-white hover:scale-110 hover:bg-blue-600 `}
+        >
+          Recargar Cuenta
+        </button>
+        <div className="flex items-center order-2 sm:order-1">
           <Image width={25} height={25} alt="logo" src="/24pxshield.svg" />
           <p className="text-sm ml-2">
             Todos los pagos en Lotopía son 100% seguros. Web certificada por{" "}
@@ -120,9 +183,6 @@ const MainSection = () => {
             Confianza Online
           </p>
         </div>
-        <button className="bg-blue-400 text-white py-2 px-4 rounded-lg hover:scale-110 hover:bg-blue-600">
-          Recargar Cuenta
-        </button>
       </div>
     </>
   );
