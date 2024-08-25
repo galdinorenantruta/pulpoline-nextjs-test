@@ -4,35 +4,42 @@ Este proyecto fue desarrollado como parte de mi proceso de evaluación en Pulpol
 🚀 Cómo Comenzar
 
 1. Clonar el Repositorio
+
    bash
+
    Copiar código
+
    git clone <url-del-repositorio>
+
    cd nombre-del-proyecto
+
 2. Instalar las Dependencias
+
    Elija el gestor de paquetes de su preferencia:
 
 bash
+
 Copiar código
+
 npm install
 
-# o
+or
 
 yarn install
 
-# o
-
 pnpm install 3. Ejecutar el Servidor de Desarrollo
+
 Inicie el servidor de desarrollo para visualizar el proyecto en acción:
 
 bash
+
 Copiar código
+
 npm run dev
 
-# o
+or
 
 yarn dev
-
-# o
 
 pnpm dev
 Abra http://localhost:3000 en su navegador para ver el resultado.
@@ -72,11 +79,11 @@ bash
 Copiar código
 npm install
 
-# or
+or
 
 yarn install
 
-# or
+or
 
 pnpm install 3. Run the Development Server
 Start the development server to see the project in action:
