@@ -17,10 +17,6 @@ Este proyecto fue desarrollado como parte de mi proceso de evaluación en Pulpol
 
    Elija el gestor de paquetes de su preferencia:
 
-bash
-
-Copiar código
-
 npm install
 
 or
@@ -30,10 +26,6 @@ yarn install
 pnpm install 3. Ejecutar el Servidor de Desarrollo
 
 Inicie el servidor de desarrollo para visualizar el proyecto en acción:
-
-bash
-
-Copiar código
 
 npm run dev
 
