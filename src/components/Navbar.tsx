@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const Navbar = () => {
+interface NavbarProps {
+  saldoAtual: number;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ saldoAtual }) => {
   const items = Array.from({ length: 10 });
   return (
     <>
@@ -38,7 +42,7 @@ const Navbar = () => {
               <Image src="/icon.png" alt="relogio" width={24} height={24} />
             </a>
 
-            <p className=" text-white text-xs text-center">0,00€</p>
+            <p className=" text-white text-xs text-center">{saldoAtual},00€</p>
           </div>
           <a href="#">
             <Image src="/24px.png" alt="Second Icon" width={26} height={20} />

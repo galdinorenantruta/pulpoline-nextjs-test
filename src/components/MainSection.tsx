@@ -1,34 +1,43 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FinalSection from "./FinalSection";
 
-const MainSection = () => {
+interface MainSectionProps {
+  onSaldoAtualChange: (saldoAtual: number) => void;
+}
+
+const MainSection: React.FC<MainSectionProps> = ({ onSaldoAtualChange }) => {
   const [saldoAtual, setSaldoAtual] = useState<number>(10);
   const [valorSelecionado, setValorSelecionado] = useState<string | null>(null);
   const [showNewComponent, setShowNewComponent] = useState(false);
+  const [saldoAnterior, setSaldoAnterior] = useState<number>(10);
+
+  useEffect(() => {
+    onSaldoAtualChange(saldoAtual); // Passa o saldoAtual para o componente pai
+  }, [saldoAtual, onSaldoAtualChange]);
 
   const handleValueClick = (value: string) => {
     setValorSelecionado(value); // Atualiza o valor selecionado
-    console.log(valorSelecionado);
   };
 
-  // Função para recarregar o saldo
   const handleRecharge = () => {
     if (valorSelecionado !== null) {
+      setSaldoAnterior(saldoAtual);
       setSaldoAtual(saldoAtual + parseFloat(valorSelecionado));
-      console.log(saldoAtual);
       setValorSelecionado(null);
       setShowNewComponent(true);
     }
   };
+
   if (showNewComponent) {
     return (
       <FinalSection
         saldoAtual={saldoAtual}
         setShowNewComponent={setShowNewComponent}
+        saldoAnterior={saldoAnterior}
       />
-    ); // Retorna o novo componente passando o saldoAtual como prop
+    );
   }
   return (
     <>
@@ -37,7 +46,7 @@ const MainSection = () => {
           Gestion de Saldo
         </h1>
 
-        <div className="flex flex-row space-x-4 mb-8">
+        <div className="flex flex-row space-x-4 mb-8 ">
           <button
             style={{ borderBottom: "1px solid #006089" }}
             className="font-semibold mb-2 "
@@ -72,11 +81,11 @@ const MainSection = () => {
           <button
             onClick={() => handleValueClick(value)}
             key={index}
-            className={`w-16 sm:w-32 text-black py-2 px-4 rounded-lg 
+            className={`w-16 sm:w-32 text-black py-2 px-4 rounded-md
               ${
                 valorSelecionado === value
-                  ? "bg-blue-700 scale-110 text-white"
-                  : "bg-blue-200 hover:bg-blue-700 hover:scale-110"
+                  ? "bg-cyan-800 scale-110 text-white"
+                  : "bg-blue-200 hover:bg-cyan-800 hover:scale-110"
               }`}
           >
             {value}
@@ -167,11 +176,11 @@ const MainSection = () => {
       <div className="p-0 pt-4 sm:p-8 bg-gray-50 flex flex-col sm:flex-row items-center justify-between">
         <button
           onClick={handleRecharge}
-          className={`w-full sm:w-48 py-2 px-4 rounded-lg mb-4 sm:mb-0 order-1 sm:order-2 ${
+          className={`w-full sm:w-48 py-2 px-4 rounded-md mb-4 sm:mb-0 order-1 sm:order-2 ${
             valorSelecionado
-              ? "bg-blue-600 text-white"
+              ? "bg-sky-600 text-white"
               : "bg-blue-400  text-gray-300"
-          } hover:text-white hover:scale-110 hover:bg-blue-600 `}
+          } hover:text-white hover:scale-110 hover:bg-sky-600 `}
         >
           Recargar Cuenta
         </button>

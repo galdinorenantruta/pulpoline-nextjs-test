@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-const Sidebar = () => {
+interface SidebarProps {
+  saldoAtual: number;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ saldoAtual }) => {
   return (
     <div className="pace-y-6 w-80">
       {/* Primeiro Card */}
@@ -12,7 +16,7 @@ const Sidebar = () => {
             style={{ background: "#F6BD11" }}
             className=" text-gray-800 text-sm font-semibold px-3 py-1 "
           >
-            Saldo: 10,00€
+            Saldo: {saldoAtual},00 €
           </span>
         </div>
         <div className="flex mt-4 gap-3">
