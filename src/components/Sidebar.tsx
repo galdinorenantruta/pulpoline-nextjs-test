@@ -112,7 +112,7 @@ const Sidebar: React.FC<SidebarProps> = ({ saldoAtual }) => {
                 width={24}
                 height={24}
               />
-              <p className="ml-2 text-gray-700">Mis MEnvios</p>
+              <p className="ml-2 text-gray-700">Mis Envios</p>
             </div>
           </div>
           {/* Título 3 */}

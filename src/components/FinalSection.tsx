@@ -13,14 +13,14 @@ const FinalSection: React.FC<FinalSectionProps> = ({
   setShowNewComponent,
 }) => {
   return (
-    <div className="mx-8 px-8 ">
+    <div className="sm:mx-8 mx-0 sm:px-8 px-2   ">
       <div className="flex align-middle">
         <Image width={20} height={20} alt="logo" src="/24pxcorrect.svg" />
         <h1 className="text-xl  font-bold ">¡Saldo Añadido!</h1>
       </div>
 
       <p className="mt-6">
-        Tu saldo ya está añadido y puedes usarlo para realizartus compras.
+        Tu saldo ya está añadido y puedes usarlo para realizar tus compras.
         ¿Listo para ganar?
       </p>
       <div className="flex bg-white rounded-md h-20 justify-center items-center gap-4 shadow-lg">
@@ -38,15 +38,18 @@ const FinalSection: React.FC<FinalSectionProps> = ({
           <p className="font-bold">Ahora</p>
         </div>
       </div>
-      <div className="mt-6 items-end">
+      <div className="flex justify-end mt-6 ">
         <button
-          className="w-32 h-10  bg-sky-400 ml-auto rounded-md"
+          className="sm:w-32 w-full  h-10 bg-sky-400  rounded-md sm:mr-3 mr-0 text-white"
           onClick={() => {
             setShowNewComponent(false);
           }}
         >
-          Voltar
+          Ir A Inicio
         </button>
+      </div>
+      <div className="flex justify-center items-center mt-8">
+        <Image width={800} height={200} alt="logo" src="/Banner.png" />
       </div>
     </div>
   );

@@ -47,6 +47,14 @@ const Navbar: React.FC<NavbarProps> = ({ saldoAtual }) => {
           <a href="#">
             <Image src="/24px.png" alt="Second Icon" width={26} height={20} />
           </a>
+          <a href="#" className="sm:hidden block">
+            <Image
+              src="/24pxclose.svg"
+              alt="close Icon"
+              width={26}
+              height={20}
+            />
+          </a>
         </div>
       </div>
 
@@ -62,7 +70,8 @@ const Navbar: React.FC<NavbarProps> = ({ saldoAtual }) => {
             </a>
 
             <p className="text-xs text-center">
-              EuroMillones <br /> <span className="font-bold">17.000.00 €</span>
+              EuroMillones <br />{" "}
+              <span className="font-bold">17.000.000 €</span>
             </p>
           </div>
         ))}

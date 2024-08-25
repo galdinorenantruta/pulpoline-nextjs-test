@@ -41,12 +41,12 @@ const MainSection: React.FC<MainSectionProps> = ({ onSaldoAtualChange }) => {
   }
   return (
     <>
-      <div className="p-0 sm:p-8 flex flex-col relative mr-6 ml-4 sm:mr-0 sm:ml-0 mt-[-20px] sm:mt-0 ">
+      <div className="p-0 sm:px-4 mt-[-40px] flex flex-col relative mr-6 ml-4 sm:mr-0 sm:ml-0  sm:mt-0 ">
         <h1 className="hidden  sm:block text-xl  font-bold mb-4">
           Gestion de Saldo
         </h1>
 
-        <div className="flex flex-row space-x-4 mb-8 ">
+        <div className="flex flex-row space-x-4 mb-8 items-center">
           <button
             style={{ borderBottom: "1px solid #006089" }}
             className="font-semibold mb-2 "
