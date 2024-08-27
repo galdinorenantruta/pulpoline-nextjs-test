@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer
-      className="hidden sm:block bg-black text-white py-6 px-10"
+      className="bg-black text-white py-6 px-10"
       style={{ minHeight: "420px" }}
     >
       <div className="container mx-auto flex flex-col md:flex-row justify-between h-full gap-2">
